@@ -1,9 +1,27 @@
 from flask import Flask, redirect, url_for, render_template, request
 import requests
+import time
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+from airportRoutes import api_call
 app = Flask(__name__)
+
+
+
+def schedule_call():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=api_call, trigger="interval", seconds=20)
+    scheduler.start() 
+
+
+
+
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def index():
+    schedule_call()
     return 'Hello wrold'
 
 @app.route("/login", methods= ["POST", "GET"])
