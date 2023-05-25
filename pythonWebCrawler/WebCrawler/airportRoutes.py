@@ -32,8 +32,21 @@ fieldnames = ['id', 'price', 'departureIataCode', 'departureName', 'flightDate',
               'dateInserted', 'timeInserted', 'countOfOffers', 'arrival',
               'carrierCode', 'numberOfFlight']
 
+<<<<<<< HEAD
 today = datetime.now()
 print("Today's date:", today)
+=======
+
+try:
+    '''
+    What are the destinations served by BLR airport?
+    '''
+    response = amadeus.airport.direct_destinations.get(departureAirportCode='MAD')
+    list = response.data
+    print(response.body)
+    print(response.result)
+    print(list[0]['name'])
+>>>>>>> 4aafd9b (flask first try)
 
 try:
     # create an empty list
