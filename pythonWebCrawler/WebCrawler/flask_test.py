@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 def schedule_call():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=api_call, trigger="interval", seconds=20)
+    scheduler.add_job(func=api_call, trigger="interval", seconds=3600)
     scheduler.start() 
 
 
@@ -21,7 +21,6 @@ atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def index():
-    schedule_call()
     return 'Hello wrold'
 
 @app.route("/login", methods= ["POST", "GET"])
@@ -59,3 +58,4 @@ def refresh_tableau():
 if __name__ == "__main__":
     app.debug = True
     app.run()
+    schedule_call()
