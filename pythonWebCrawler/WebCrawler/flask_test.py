@@ -13,7 +13,8 @@ def schedule_call():
     scheduler.add_job(func=api_call, trigger="interval", seconds=3600)
     scheduler.start()
     # Shut down the scheduler when exiting the app
-    atexit.register(lambda: scheduler.shutdown())
+
+atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def index():
