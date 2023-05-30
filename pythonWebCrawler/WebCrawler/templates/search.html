@@ -1,129 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Include datepicker JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-    <link href="./search.css" rel="stylesheet" />
+
 
   </head>
 <body>
 
-<div class="search-container">
-     <nav class="navbar">
-        <div class="brand-title"><b>FlightViz</b></div>
-        <div class="powered">Powered by <i>Amadeus Api</i> and <i>Tableau</i> </div>
-    <!--        <img alt="amadeus" src="logo-portal.png" alt="Amadeus for Developers logo" class="logo-height">-->
-    </nav>
-
-    <div class="search-text">Welcome to our FlightViz World!</div>
-    <div class="projects-text06">Explore top destinations from Athens for your vacation.</div>
-
-    <div class="container">
+    <section>
+        
         <form  action="#" method="post">
-            <span class="search-text05">When are you travelling!</span>
-            <br>
-            <div style="padding-left: 17px; font-size: 16px; text-align: justify;"><i>Pick a date and a destination of your preference and see the average prediction price.</i></div>
-            <br>
-
-         <div class="container-form">
-                <div class="form-group" >
-                    <label for="date" class="col-sm-1 col-form-label">Date</label>
-                    <div class="col-sm-4">
-                      <div class="input-group date" id="datepicker" style="width: 180px;">
-                          <input type="text"  class="form-control" name="selected_date"  >
-                          <span class="input-group-append">
-                              <span class="input-group-text bg-white">
-                                  <i class="fa fa-calendar" ></i>
-                              </span>
+            <h2>When are you travelling</h2>
+            <div class="form-group">
+                <label for="date" class="col-sm-1 col-form-label">Date</label>
+                <div class="col-sm-4">
+                  <div class="input-group date" id="datepicker" >
+                      <input type="text"  class="form-control" name="selected_date"  >
+                      <span class="input-group-append">
+                          <span class="input-group-text bg-white">
+                              <i class="fa fa-calendar" ></i>
                           </span>
-                      </div>
-                    </div>
-                </div>
-                <div class="second">
-                    <div class="form-group" >
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pick destination
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="Pick destination" id="country" name="country" required>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('THIRA')">Thira</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('MYKONOS')">Mykonos</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('ISTANBUL')">Instanbul</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('ROME')">Rome</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('BARCELONA')">Barcelona</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('MADRID')">Madrid</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('PARIS')">Paris</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('VIENNA')">Vienna</a>
-                                <a class="dropdown-item" href="#" onclick="selectCountry('AMSTERDAM')">Amsterdam</a>
-
-
-                            </div>
-                        </div>
-                        <input type="hidden" id="selectedCountry" name="country">
-                    </div>
-                </div>
+                      </span>
+                  </div>
             </div>
-
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox"  id="checkbox" name="stops" checked >
-                    <label class="form-check-label" for="flexCheckCheckedDisabled" style="font-size: 16px;">
-                        I don't mind having intermediate stops
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked >
+                    <label class="form-check-label" for="flexCheckCheckedDisabled">
+                    I don't mind having intermediate stops
                     </label>
                 </div>
             </div>
-
-            <div class="form-group" >
-                <div class="d-flex justify-content-center">
-                    <input class="btn btn-secondary" type="submit" value="Submit" id="submit" onclick="validate()">
+            <h2>Where are you going</h2>
+            <div class="form-group">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+                      Destination
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">MYKONOS</a></li>
+                      <li><a class="dropdown-item" href="#">THIRA</a></li>
+                      <li><a class="dropdown-item" href="#">IRAKLEION</a></li>
+                      <li><a class="dropdown-item" href="#">PARIS</a></li>
+                      <li><a class="dropdown-item" href="#">ROME</a></li>
+                      <li><a class="dropdown-item" href="#">MADRID</a></li>
+                      <li><a class="dropdown-item" href="#">BARCELONA</a></li>
+                      <li><a class="dropdown-item" href="#">AMSTERDAM</a></li>
+                      <li><a class="dropdown-item" href="#">LISBON</a></li>
+                    </ul>
                 </div>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-secondary" type="button" type="submit" value="Submit">
             </div>
         </form>
 
-        <div class="avg-price">
-            {% block content %}
-            {% endblock %}
-        </div>
-</div>
-
-     <div id="tableauViz"></div>
-
-    <div class="box">
-        <div class="image-container">
-            <img src="sofia.jpg" alt="sofia" class="sofia">
-            <span class="content">
-                <h2>Hi, I am Sofia</h2>
-                <p> I'm a software engineer, with 1,5 year experience in software development. I graduated from National and Kapodistrian university of Athens and I'm currently studying for my Master's degree with specialization in "Data Information and Knowledge Management". In my free time I enjoy playing tennis.</p>
-            </span>
-        </div>
-        <div class="image-container2">
-            <img src="me.jpg" alt="dimitra" class="dimitra">
-            <span class="content">
-                <h2>Hi, I am Dimitra</h2>
-                <p> I am originally from Chios and I currently live in Athens. I am a Database Engineer since 2018, and experienced in technical support and integration systems in the information technology and services industry. In my free time, I enjoy music, dancing and drink wine and tsipoura with my friends.</p>
-            </span>
-        </div>
-    </div>
-
-<!--    <div class="page-footer">-->
-<!--        <p> I am originally from Chios and I currently live</p>-->
-<!--    </div>-->
-
-</div>
-
-
-
-</body>
+    </section>
+    
+    <section>
+        {% block content %}
+        {% endblock %}
+    </section>
     <script type="text/javascript">
       $(function() {
           $('#datepicker').datepicker();
@@ -166,26 +112,26 @@
 <!-- <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p> -->
 
 <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
-
+<div id="tableauViz"></div>
 <script>
     function initViz() {
         var containerDiv = document.getElementById("tableauViz");
         var vizUrl = "https://public.tableau.com/shared/SJJSZZK3M?:display_count=n&:origin=viz_share_link";
-
+    
         var options = {
-<!--            width: "1200px",-->
-<!--            height: "800px",-->
+            width: "1200px",
+            height: "800px",
             hideTabs: true,
             hideToolbar: true
         };
-
+    
         var viz = new tableau.Viz(containerDiv, vizUrl, options);
     }
-
+    
     // Call the initViz function when the page has finished loading
     // document.addEventListener("DOMContentLoaded", initViz);
     initViz();
 </script>
 
-
+</body>
 </html>

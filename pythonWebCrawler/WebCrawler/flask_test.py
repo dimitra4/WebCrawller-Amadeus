@@ -7,17 +7,27 @@ from airportRoutes import api_call
 app = Flask(__name__)
 
 
+<<<<<<< HEAD
 scheduler = BackgroundScheduler()
 # daemon=True
 scheduler.add_job(func=api_call, trigger="interval", hours=2, max_instances=1)
 scheduler.start()
 print("started")
+=======
+scheduler = BackgroundScheduler(daemon=True)
+scheduler.add_job(func=api_call, trigger="interval", seconds=7200)
+scheduler.start() 
+>>>>>>> f303a0f (scheduler & ml pred)
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def index():
+<<<<<<< HEAD
     # api_call()
+=======
+    api_call()
+>>>>>>> f303a0f (scheduler & ml pred)
     return 'Hello wrold'
 
 @app.route("/search", methods= ["POST", "GET"])
