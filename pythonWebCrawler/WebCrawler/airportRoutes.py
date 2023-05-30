@@ -80,6 +80,7 @@ def api_call():
                                 if k in r)
                     dictionary['departureTime'] = res2['departure']['at']
 
+                  # 'departureTime', 'arrivalTime', 'duration', 'totalStops'
                 for r in res['itineraries'][0]['segments'][-1:]:
                     print("r", r)
                     res1 = dict((k, r[k]) for k in ['arrival', 'carrierCode', 'number', 'departure', 'numberOfStops']

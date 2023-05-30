@@ -6,23 +6,27 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from airportRoutes import api_call
 app = Flask(__name__)
 
-def schedule_call():
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(func=api_call, trigger="interval", seconds=3600)
-    scheduler.start()
-    # Shut down the scheduler when exiting the app
+
+scheduler = BackgroundScheduler(daemon=True)
+scheduler.add_job(func=api_call, trigger="interval", seconds=7200)
+scheduler.start() 
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def index():
+    api_call()
     return 'Hello wrold'
 
-@app.route("/login", methods= ["POST", "GET"])
-def login():
+@app.route("/search", methods= ["POST", "GET"])
+def search():
     if request.method == "POST" :
-        user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
+        selected_date = request.form.get('selected_date')
+        print(selected_date)
+        return render_template("prediction.html", result = selected_date )
     else:
-        return render_template("login.html")
+        return render_template("search.html")
+
 
 @app.route("/<usr>")
 def user(usr):
@@ -51,4 +55,4 @@ def refresh_tableau():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-    # schedule_call()
+    
