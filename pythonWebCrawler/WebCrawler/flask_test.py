@@ -6,15 +6,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from airportRoutes import api_call
 app = Flask(__name__)
 
-
-
 def schedule_call():
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=api_call, trigger="interval", seconds=3600)
     scheduler.start()
     # Shut down the scheduler when exiting the app
-
-atexit.register(lambda: scheduler.shutdown())
 
 @app.route('/')
 def index():
@@ -55,4 +51,4 @@ def refresh_tableau():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-    schedule_call()
+    # schedule_call()
