@@ -525,8 +525,8 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>&lt;Sheet Name&gt; -</run>
-            <run italic='true'> &lt;Page Name&gt;</run>
+            <run fontname='Segoe UI' fontsize='16'>&lt;Sheet Name&gt; -</run>
+            <run fontname='Segoe UI' fontsize='16' italic='true'> &lt;Page Name&gt;</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -580,7 +580,7 @@
           <style-rule element='legend-title-text'>
             <format attr='color' field='[federated.031elp616ngph413gfxp1072pwmo].[none:destinationName:nk]' value='Destination'>
               <formatted-text>
-                <run>Destination</run>
+                <run fontname='Segoe UI'>Destination</run>
               </formatted-text>
             </format>
           </style-rule>
@@ -616,12 +616,10 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>&lt;Sheet Name&gt; -</run>
-            <run bold='true'>Æ </run>
-            <run>Æ </run>
-            <run italic='true'>&lt;Page Name&gt;</run>
+            <run fontname='Segoe UI' fontsize='16'>&lt;Sheet Name&gt; -  </run>
+            <run fontname='Segoe UI' fontsize='16' italic='true'>&lt;Page Name&gt;</run>
             <run>Æ&#10;</run>
-            <run fontsize='10' italic='true'>Select cities to see the most popular destinations according to the number of flights, as well as the avg. price variation every hour .</run>
+            <run fontname='Segoe UI' fontsize='11'>Select cities to see the most popular destinations from Athens according to the number of flights, as well as the avg. price variation every hour.</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -663,8 +661,8 @@
         </view>
         <style>
           <style-rule element='axis'>
-            <encoding attr='space' class='0' field='[federated.031elp616ngph413gfxp1072pwmo].[Longitude (generated)]' field-type='quantitative' max='6286345.0521521997' min='-12391539.126587426' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
-            <encoding attr='space' class='0' field='[federated.031elp616ngph413gfxp1072pwmo].[Latitude (generated)]' field-type='quantitative' max='10631627.721999338' min='3439568.724406254' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.031elp616ngph413gfxp1072pwmo].[Longitude (generated)]' field-type='quantitative' max='5846103.5102973748' min='-20055120.446201652' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.031elp616ngph413gfxp1072pwmo].[Latitude (generated)]' field-type='quantitative' max='11596664.729332799' min='2278178.2993306685' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
           </style-rule>
           <style-rule element='cell'>
             <format attr='color' value='#000000' />
@@ -688,7 +686,7 @@
           <style-rule element='legend-title-text'>
             <format attr='size' field='[federated.031elp616ngph413gfxp1072pwmo].[cnt:countOfOffers:qk]' value='Number of Flights'>
               <formatted-text>
-                <run bold='true' fontalignment='0' fontname='Tableau Light'>Number of Flights</run>
+                <run fontalignment='0' fontname='Segoe UI'>Number of Flights</run>
               </formatted-text>
             </format>
           </style-rule>
@@ -797,8 +795,9 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>&lt;Sheet Name&gt;&#10;</run>
-            <run italic='true'>&lt;Page Name&gt;</run>
+            <run fontname='Segoe UI' fontsize='16'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontname='Segoe UI' fontsize='16' italic='true'>&lt;Page Name&gt;</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -813,22 +812,10 @@
             <column datatype='integer' name='[countOfOffers]' role='measure' type='quantitative' />
             <column datatype='date' name='[dateInserted]' role='dimension' type='ordinal' />
             <column datatype='string' name='[destinationName]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
-            <column datatype='string' name='[destinationRegion]' role='dimension' semantic-role='[Country].[Name]' type='nominal'>
-              <semantic-values semantic-role='[Country].[Name]'>
-                <semantic-value key='&quot;Netherlads&quot;' value='&quot;Netherlands&quot;' />
-              </semantic-values>
-            </column>
             <column-instance column='[dateInserted]' derivation='MDY' name='[md:dateInserted:ok]' pivot='key' type='ordinal' />
             <column-instance column='[destinationName]' derivation='None' name='[none:destinationName:nk]' pivot='key' type='nominal' />
             <column datatype='real' name='[price]' role='measure' type='quantitative' />
           </datasource-dependencies>
-          <filter class='categorical' column='[federated.031elp616ngph413gfxp1072pwmo].[Action (MDY(dateInserted),destinationName,destinationRegion)]'>
-            <groupfilter function='crossjoin' user:ui-action-filter='[Action1_FCA4D774C33142F6A845196510449156]' user:ui-enumeration='all' user:ui-marker='enumerate'>
-              <groupfilter function='level-members' level='[md:dateInserted:ok]' />
-              <groupfilter function='level-members' level='[destinationName]' />
-              <groupfilter function='level-members' level='[destinationRegion]' />
-            </groupfilter>
-          </filter>
           <filter class='categorical' column='[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]' filter-group='4'>
             <groupfilter function='level-members' level='[md:dateInserted:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
@@ -844,7 +831,6 @@
           </shelf-sorts>
           <slices>
             <column>[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]</column>
-            <column>[federated.031elp616ngph413gfxp1072pwmo].[Action (MDY(dateInserted),destinationName,destinationRegion)]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -862,14 +848,14 @@
           <style-rule element='legend-title-text'>
             <format attr='color' field='[federated.031elp616ngph413gfxp1072pwmo].[avg:price:qk]' value='Avg. price'>
               <formatted-text>
-                <run bold='true' fontname='Tableau Light'>Avg. price</run>
+                <run fontname='Segoe UI'>Avg. price</run>
               </formatted-text>
             </format>
           </style-rule>
           <style-rule element='quick-filter'>
             <format attr='title' field='[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]' value='Date of Flight'>
               <formatted-text>
-                <run bold='true' fontname='Tableau Light'>Date of Flight</run>
+                <run fontname='Segoe UI'>Date of Flight</run>
               </formatted-text>
             </format>
           </style-rule>
@@ -1010,7 +996,7 @@
                         <format attr='margin' value='4' />
                       </zone-style>
                     </zone>
-                    <zone h='13500' id='42' name='Number of Flights and Average Price' param='[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]' type-v2='filter' w='10500' x='88700' y='20125'>
+                    <zone h='27750' id='42' name='Number of Flights and Average Price' param='[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]' type-v2='filter' w='10500' x='88700' y='20125'>
                       <zone-style>
                         <format attr='border-color' value='#000000' />
                         <format attr='border-style' value='none' />
@@ -1056,8 +1042,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1200' minheight='1200' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='49' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98000' id='48' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='100000' id='53' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='52' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
                 <zone fixed-size='280' h='50625' id='3' is-fixed='true' name='Number of Flights' w='87900' x='800' y='1000'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -1076,7 +1062,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='13500' id='42' mode='checkdropdown' name='Number of Flights and Average Price' param='[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]' type-v2='filter' w='10500' x='88700' y='20125'>
+                <zone h='27750' id='42' mode='checkdropdown' name='Number of Flights and Average Price' param='[federated.031elp616ngph413gfxp1072pwmo].[md:dateInserted:ok]' type-v2='filter' w='10500' x='88700' y='20125'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1112,7 +1098,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone h='5750' id='17' name='Hourly Price Variation' pane-specification-id='0' param='[federated.031elp616ngph413gfxp1072pwmo].[none:destinationName:nk]' type-v2='color' w='11800' x='88100' y='61875'>
+                <zone h='28250' id='17' name='Hourly Price Variation' pane-specification-id='0' param='[federated.031elp616ngph413gfxp1072pwmo].[none:destinationName:nk]' type-v2='color' w='11800' x='88100' y='61875'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -1176,7 +1162,7 @@
       <viewpoint>
         <current-page>
           <multibucket>
-            <bucket>20230529</bucket>
+            <bucket>20230605</bucket>
           </multibucket>
         </current-page>
         <floating-toolbar-visibility value='1' />
@@ -1196,7 +1182,7 @@
           <strip size='2147483647'>
             <card type='rows' />
           </strip>
-          <strip size='31'>
+          <strip size='2147483647'>
             <card type='title' />
           </strip>
           <strip size='2147483647'>
@@ -1289,7 +1275,7 @@
         <viewpoint name='Hourly Price Variation'>
           <current-page>
             <multibucket>
-              <bucket>20230530</bucket>
+              <bucket>20230605</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -1297,7 +1283,7 @@
         <viewpoint name='Number of Flights'>
           <current-page>
             <multibucket>
-              <bucket>20230530</bucket>
+              <bucket>20230605</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />
@@ -1306,7 +1292,7 @@
         <viewpoint name='Number of Flights and Average Price'>
           <current-page>
             <multibucket>
-              <bucket>20230530</bucket>
+              <bucket>20230605</bucket>
             </multibucket>
           </current-page>
           <zoom type='entire-view' />

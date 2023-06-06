@@ -1,6 +1,7 @@
 # Install the Python library from https://pypi.org/project/amadeus
 from amadeus import Client, ResponseError
-from datetime import datetime, timedelta
+import time
+from datetime import datetime
 import csv
 import os
 import pymongo
@@ -26,13 +27,10 @@ fieldnames = ['id', 'price', 'departureIataCode', 'departureName', 'departureIat
               'destinationName', 'destinationRegion', 'dateInserted', 'timeInserted', 'countOfOffers', 'arrival',
               'carrierCode', 'numberOfFlight', 'departureTime', 'arrivalTime', 'duration', 'totalStops' ]
 
-today = datetime.now()
-# tomorrow = today + timedelta(1)
-# today = "2023-05-28"
-print("Today's date:", today)
-
 def api_call():
     try:
+        today = datetime.now()
+        print("Today's date:", today)
         # create the connection with MongoDB Atlas
         client = pymongo.MongoClient(
             'mongodb+srv://demetrakostala:VTQ7WvS3033c2WcW@clusterwebcrawler.o3bvkic.mongodb.net/?retryWrites=true&w=majority')
@@ -46,6 +44,7 @@ def api_call():
         for j in listOfDestinations:
             # print(j['iataCode'])
             # print(today.strftime("%Y-%m-%d"))
+            time.sleep(2)
             response = amadeus.shopping.flight_offers_search.get(originLocationCode='ATH',
                                                                 destinationLocationCode=j['iataCode'],
                                                                 departureDate=today.strftime("%Y-%m-%d"),
@@ -123,6 +122,7 @@ def api_call():
                 if os.stat("country_new.csv").st_size == 0:
                     writer.writeheader()
                 writer.writerows(addToList)
+        print("Today's date:", today)
 
     except ResponseError as error:
         raise

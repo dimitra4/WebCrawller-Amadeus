@@ -1,0 +1,232 @@
+ html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+}
+
+    /* Add your styles for the body content */
+body {
+    padding: 0px;
+    background: rgba(210, 214, 240, 1);
+
+}
+
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.brand-title {
+    font-size: 2rem;
+	letter-spacing: 3px;
+    margin: 2rem;
+    font-family: Segoe UI;
+}
+
+.powered {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-right: 2rem;
+    font-family: Segoe UI;
+}
+
+.search-container {
+    align-items: flex-start;
+    flex-direction: column;
+    margin: auto;
+    max-width: 100%;
+    justify-content: center;
+    position: relative;
+
+}
+
+.container {
+     flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    }
+
+form {
+      position: absolute;
+      top: 260px;
+      right: 20px;
+      width: 29%;
+      height: 820px;
+      padding: 10px;
+      background-color: #ffdcdc;
+      /* Add other desired form styles */
+    }
+
+.avg-price{
+    position: absolute;
+    top: 650px;
+    width: 27%;
+    min-height: 20vh;
+    right: 35px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+#tableauViz {
+      position: absolute;
+      margin-top: 40px;
+      margin-left: 5px;
+      width: 60%;
+      min-height: 80vh;
+      padding: 20px;
+    }
+
+
+.search-text {
+  padding-top: 10px;
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: auto;
+  font-size: 48px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+  font-family: Segoe UI;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.projects-text02 {
+  padding-left: 15px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 30px;
+  align-self: auto;
+  font-style: Bold;
+  text-align: left;
+ font-family: Segoe UI;
+  font-weight: 700;
+  line-height: normal;
+  font-stretch: normal;
+}
+
+.projects-text06 {
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 1);
+  width: 805px;
+  height: auto;
+  position: absolute;
+  font-size: 18px;
+  align-self: auto;
+  text-align: justify;
+  font-family: Segoe UI;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+}
+
+.search-text05 {
+  color: rgba(13, 13, 13, 0.8);
+  padding-left: 10px;
+  font-size: 30px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Segoe UI;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  margin: auto;
+  width: 50%;
+}
+
+.form-group label{
+    color: rgba(13, 13, 13, 1);
+    font-family: Segoe UI;
+    font-size: 22px;
+}
+
+.second{
+    padding-top: 48px
+}
+
+.container-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+}
+
+.box {
+	padding: 20px;
+    margin-top: 950px;
+    height: auto;
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: 26px;
+	border-color: transparent;
+	margin-left: 20px;
+    width: 97%;
+	}
+
+.sofia {
+  border-radius: 50%;
+  width: 200px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.dimitra {
+  border-radius: 50%;
+  width: 200px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.image-container {
+  padding-top: 10px;
+  position: relative;
+}
+
+.content {
+  padding-top: 40px;
+  position: absolute;
+  left: 270px;
+  width: 65%;
+  color: white;
+  font-size: 18px;
+  text-align: justify;
+  font-family: Segoe UI;
+  color: rgba(13, 13, 13, 0.8);
+}
+
+.image-container2 {
+  padding-top: 50px;
+  position: relative;
+}
+
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #f5f5f5;
+}
+
+#dropdownButton{
+    background-color: #f5f5f5;
+    color: rgba(13, 13, 13, 0.8);
+    border: none;
+}
+
+#submit{
+    margin-top:20px;
+    padding-top: 10px;
+    background-color: #ffa6a6;
+    color: rgba(13, 13, 13, 0.8);
+    width: 50%
+}
