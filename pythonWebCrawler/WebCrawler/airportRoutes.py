@@ -5,6 +5,7 @@ from datetime import datetime
 import csv
 import os
 import pymongo
+import time
 
 # create the connection with Amadeus API
 amadeus = Client(
@@ -42,9 +43,7 @@ def api_call():
         print("\n\n---------------------------------------------------------------")
         addToList = []
         for j in listOfDestinations:
-            # print(j['iataCode'])
-            # print(today.strftime("%Y-%m-%d"))
-            time.sleep(2)
+            time.sleep(2)#in order to prevent HTTP 429 error: too many requests are made to a page within a short period of time
             response = amadeus.shopping.flight_offers_search.get(originLocationCode='ATH',
                                                                 destinationLocationCode=j['iataCode'],
                                                                 departureDate=today.strftime("%Y-%m-%d"),
@@ -54,7 +53,6 @@ def api_call():
             print(response.body)
             countOfOffers = len(list)
             for i in list:
-
                 dictionary = {}
                 res = dict((k, i[k]) for k in ['price', 'itineraries']
                         if k in i)
