@@ -1,11 +1,10 @@
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.preprocessing import LabelEncoder
 from dbQueries import findUniqueCarrierCodeForDest, findUniqueTotalStopsForDest
 from datetime import datetime as dt
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.preprocessing import OneHotEncoder
+
 
 
 train_data = pd.read_csv("./country_new.csv")
@@ -16,19 +15,13 @@ train_data.drop('departureIataCodeValidation', axis=1, inplace=True)
 train_data.drop('destinationRegion', axis=1, inplace=True)
 train_data.drop('arrival', axis=1, inplace=True)
 train_data.drop('arrivalTime', axis=1, inplace=True)
-# train_data.drop('departureTime', axis=1, inplace=True)
 train_data.drop('duration', axis=1, inplace=True)
-# train_data.drop('carrierCode', axis=1, inplace=True)
 train_data.drop('dateInserted', axis=1, inplace=True)
 train_data.drop('timeInserted', axis=1, inplace=True)
 train_data.drop('countOfOffers', axis=1, inplace=True)
 train_data.drop('numberOfFlight', axis=1, inplace=True)
 train_data.drop('departureName', axis=1, inplace=True)
 
-# print( train_data.dtypes) #to check the data type
-
-#id,price,departureIataCode,departureName,flightDate,destinationIataCode,
-# destinationName,arrival,carrierCode,numberOfFlight,departureTime,arrivalTime,duration,totalStops
 
 #we want to convert time objects to timestamp
 def change_to_datetime(col):
@@ -45,10 +38,7 @@ def extract_time(df, col):
     df[col+'_hours']=df[col].dt.hour
     df[col+'_minutes']=df[col].dt.minute
     df.drop(col, axis=1, inplace=True)
-    # print("hour ",  df[col+'_hour'])
-    # print("min ", df[col+'_minute'])
 
-# extract_time(train_data, 'arrivalTime')
 extract_time(train_data, 'departureTime')
 
 def find_hour(x):
@@ -74,26 +64,16 @@ def find_minutes(x):
         ret = 0
     return ret
 
-# train_data['duration_hours']=train_data['duration'].apply(find_hour)
-# train_data['duration_minutes']=train_data['duration'].apply(find_minutes)
-# train_data.drop('duration', axis=1, inplace=True)
 
-
-# print("hours ", train_data['duration_hours'])
-# print("minutes ", train_data['duration_minutes'])
 
 cat_col = [col for col in train_data.columns if train_data[col].dtype == 'O'] # object type data are considered categorical
-# print (cat_col)
-
 cont_col = [col for col in train_data.columns if train_data[col].dtype != 'O'] # continues data
-# print (cont_col)
-#[ 'price', 'flightDate', 'totalStops']
+
 
 categorical_data = train_data.filter(cat_col, axis =1)
 
-# print("--------------------")
-#Handle categorical  data with onehot encoding
 
+#Handle categorical  data with onehot encoding
 enc1 = LabelBinarizer()
 enc1.fit(categorical_data['carrierCode'])
 transformed = enc1.transform(categorical_data['carrierCode'])
@@ -113,10 +93,8 @@ file.close()
 
 
 categorical_data.drop('carrierCode', axis=1, inplace=True)
-# categorical_data.drop('departureName', axis=1, inplace=True)
 categorical_data.drop('destinationName', axis=1, inplace=True)
 
-# print(">>>>>>>>>>>>> ", categorical_data)
 
 final_train_data = pd.concat([ airline, destination, train_data[cont_col]], axis=1)
 
@@ -158,9 +136,6 @@ def predict(ml_model, dump, X_test):
 predict(RandomForestRegressor(n_estimators = 100),1, X_test)
 
 
-#id,price,departureIataCode,departureName,flightDate,destinationIataCode,destinationName,arrival,carrierCode,numberOfFlight,departureTime,arrivalTime,duration,totalStops
-
-print( y_test )
 
 def predictPrice(sday, smonth, destination, stops):
    
@@ -182,19 +157,20 @@ def predictPrice(sday, smonth, destination, stops):
     enc_file.close()
 
     airlines = findUniqueCarrierCodeForDest(destination)
-    for line in airlines:
-   
+    stops_lst= [0] 
+    if(stops == 1): stops_lst.append(1) 
+    for line in airlines:   
         if line not in enc1.classes_ : continue #there might be unknown values to the encoder
         for hour in dep_hours:
-            fhour= dt.strptime(hour, '%X')
-            test_airlines.append(line) 
-            test_flightDays.append(sday)
-            test_flightMonth.append(smonth)
-            test_destinationName.append(destination)
-            test_stops.append(stops)
-            test_hours.append(fhour.hour)
-            test_minutes.append(fhour.minute)   
-            # print(">>",line, " ",sday, " ", smonth, " ",destination," " ,stops," " ,fhour.hour, " ",fhour.minute,  "<<")
+            for stops in stops_lst:
+                fhour= dt.strptime(hour, '%X')
+                test_airlines.append(line) 
+                test_flightDays.append(sday)
+                test_flightMonth.append(smonth)
+                test_destinationName.append(destination)
+                test_stops.append(stops)
+                test_hours.append(fhour.hour)
+                test_minutes.append(fhour.minute)   
             
     
     test_airlines_df = pd.DataFrame(data=test_airlines)
@@ -204,8 +180,6 @@ def predictPrice(sday, smonth, destination, stops):
     test_destinationName_df = pd.DataFrame(data=test_destinationName)
     transformed_destinationName = enc2.transform(test_destinationName_df)
     test_destinationName = pd.DataFrame(transformed_destinationName, columns=enc2.classes_)
-    
-
     
     dt_cont= pd.DataFrame(list(zip(test_stops, test_flightDays, test_flightMonth, test_hours, test_minutes)), columns=["totalStops", "flight_day", "flight_month", "departureTime_hours", "departureTime_minutes"] )
     test_set= pd.concat([ test_airlines, test_destinationName, dt_cont], axis=1)
@@ -219,7 +193,7 @@ def predictPrice(sday, smonth, destination, stops):
 
     model_file.close()
     
-    print(test_set)
+    return avg
                                     
 
    
