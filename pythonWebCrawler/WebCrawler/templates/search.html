@@ -12,7 +12,8 @@
     <!-- Include datepicker JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-    <link href="./search.css" rel="stylesheet" />
+    <!-- <link href="./search.css" rel="stylesheet" type="text/css" /> -->
+    <link href="{{ url_for('static', filename='search.css') }}" rel="stylesheet" type="text/css" />
 
   </head>
 <body>
@@ -21,7 +22,7 @@
      <nav class="navbar">
         <div class="brand-title"><b>FlightViz</b></div>
         <div class="powered">Powered by <i>Amadeus Api</i> and <i>Tableau</i> </div>
-    <!--        <img alt="amadeus" src="logo-portal.png" alt="Amadeus for Developers logo" class="logo-height">-->
+    <!--        <img alt="amadeus" src="/static/logo-portal.png" alt="Amadeus for Developers logo" class="logo-height">-->
     </nav>
 
     <div class="search-text">Welcome to our FlightViz World!</div>
@@ -100,14 +101,14 @@
 
     <div class="box">
         <div class="image-container">
-            <img src="sofia.jpg" alt="sofia" class="sofia">
+            <img src="/static/sofia.jpg" alt="sofia" class="sofia">
             <span class="content">
                 <h2>Hi, I am Sofia</h2>
                 <p> I'm a software engineer, with 1,5 year experience in software development. I graduated from National and Kapodistrian university of Athens and I'm currently studying for my Master's degree with specialization in "Data Information and Knowledge Management". In my free time I enjoy playing tennis.</p>
             </span>
         </div>
         <div class="image-container2">
-            <img src="me.jpg" alt="dimitra" class="dimitra">
+            <img src="/static/me.jpg" alt="dimitra" class="dimitra">
             <span class="content">
                 <h2>Hi, I am Dimitra</h2>
                 <p> I am originally from Chios and I currently live in Athens. I am a Database Engineer since 2018, and experienced in technical support and integration systems in the information technology and services industry. In my free time, I enjoy music, dancing and drink wine and tsipoura with my friends.</p>
