@@ -5,14 +5,14 @@ client = pymongo.MongoClient(
         'mongodb+srv://demetrakostala:VTQ7WvS3033c2WcW@clusterwebcrawler.o3bvkic.mongodb.net/?retryWrites=true&w=majority')
 mydb = client.flight_data_db
 flight_data = mydb.flight_data
-print(flight_data)
+# print(flight_data)
 
 # Retrieve all documents from the collection
 documents = flight_data.find()
 
 # Print the contents of each document
-for document in documents:
-    print(document)
+# for document in documents:
+#     print(document)
 
 
 def findUniqueCarrierCodeForDest(dest):
